@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -19,9 +19,9 @@ export class SignUpComponent implements OnInit{
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group({
-      full_name: [''],
-      email: [''],
-      password: ['']
+      full_name: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 

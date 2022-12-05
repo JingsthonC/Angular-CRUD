@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UserModel } from './user.model';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -16,6 +16,10 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent implements OnInit{
+  
+
+
+  p: number = 1;
   faEdit = faEdit;
   faTrash = faTrash;
   formValue !: FormGroup;
@@ -24,14 +28,17 @@ export class UserDashboardComponent implements OnInit{
   userModelObj : UserModel = new UserModel();
   userData !: any;
 
+  
+
     constructor(private formBuilder: FormBuilder, private api: ApiService) {
       
     }
   ngOnInit(): void {
+    
     this.formValue = this.formBuilder.group({
-      first_name : [''],
-      last_name: [''],
-      email: ['']
+      first_name : ['', Validators.required],
+      last_name: ['', Validators.required],
+      email: ['', Validators.required]
     })
 
     this.getUsers();
@@ -70,6 +77,7 @@ export class UserDashboardComponent implements OnInit{
   }
 
   deleteUser(data: any) {
+    if(confirm("Are you sure you want to delete?"))
     this.api.deleteUser(data.id)
     .subscribe(res=>{
       alert('User Deleted');
@@ -92,6 +100,8 @@ export class UserDashboardComponent implements OnInit{
     this.userModelObj.last_name = this.formValue.value.last_name;
     this.userModelObj.email = this.formValue.value.email;
 
+    if(confirm("Are you sure you want to update?"))
+
     this.api.updateUser(this.userModelObj, this.userModelObj.id)
     .subscribe(res=>{
       alert('Updated Successfully!');
@@ -101,4 +111,5 @@ export class UserDashboardComponent implements OnInit{
       this.getUsers(); // added lang
     })
   }
+
 }
