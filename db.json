@@ -1,13 +1,6 @@
 {
   "users": [
     {
-      "id": 8,
-      "email": "lindsay.ferguson@reqres.in",
-      "first_name": "Lindsay",
-      "last_name": "Ferguson",
-      "avatar": "https://reqres.in/img/faces/8-image.jpg"
-    },
-    {
       "id": 9,
       "email": "tobias.funke@reqres.in",
       "first_name": "Tobias",
@@ -29,17 +22,18 @@
       "avatar": "https://reqres.in/img/faces/11-image.jpg"
     },
     {
-      "id": 12,
-      "email": "rachel.howell@reqres.in",
-      "first_name": "Rachel",
-      "last_name": "Howell",
-      "avatar": "https://reqres.in/img/faces/12-image.jpg"
-    },
-    {
       "id": 13,
-      "email": "zarapoc@gmail.com",
-      "first_name": "Zarah - Lalong Ganda",
-      "last_name": "Castillo"
+      "email": "masto@gmail.com",
+      "first_name": "tomasmang",
+      "last_name": "masto"
+    }
+  ],
+  "registered": [
+    {
+      "full_name": "Jingsthon Castillo",
+      "email": "castillojingsthon@gmail.com",
+      "password": "123456",
+      "id": 1
     }
   ]
 }

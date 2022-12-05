@@ -7,11 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

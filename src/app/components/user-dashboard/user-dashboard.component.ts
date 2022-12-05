@@ -19,7 +19,8 @@ export class UserDashboardComponent implements OnInit{
   faEdit = faEdit;
   faTrash = faTrash;
   formValue !: FormGroup;
-
+  showAdd !: boolean;
+  showUpdate !: boolean;
   userModelObj : UserModel = new UserModel();
   userData !: any;
 
@@ -35,6 +36,13 @@ export class UserDashboardComponent implements OnInit{
 
     this.getUsers();
   }
+
+  onClickAdd() {
+    this.formValue.reset();
+    this.showAdd = true;
+    this.showUpdate = false;
+  }
+
   
   postUserDetails() {
     this.userModelObj.first_name = this.formValue.value.first_name;
@@ -69,6 +77,10 @@ export class UserDashboardComponent implements OnInit{
     })
   }
   onEdit(data: any) {
+
+    this.showAdd = false;
+    this.showUpdate = true;
+
     this.userModelObj.id = data.id;
     this.formValue.controls['first_name'].setValue(data.first_name);
     this.formValue.controls['last_name'].setValue(data.last_name);
