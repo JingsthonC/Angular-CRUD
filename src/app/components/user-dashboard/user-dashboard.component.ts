@@ -4,10 +4,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UserModel } from './user.model';
 import { ApiService } from 'src/app/services/api.service';
-
-
-
-
+import {HttpClient} from '@angular/common/http';
 
 
 @Component({
@@ -30,7 +27,7 @@ export class UserDashboardComponent implements OnInit{
 
   
 
-    constructor(private formBuilder: FormBuilder, private api: ApiService) {
+    constructor(private formBuilder: FormBuilder, private api: ApiService, private http: HttpClient) {
       
     }
   ngOnInit(): void {
@@ -51,11 +48,38 @@ export class UserDashboardComponent implements OnInit{
   }
 
   
-  postUserDetails() {
+  postUserDetails() :void { 
     this.userModelObj.first_name = this.formValue.value.first_name;
     this.userModelObj.last_name = this.formValue.value.last_name;
     this.userModelObj.email = this.formValue.value.email;
 
+
+    //this line
+    // this.api.getUser()
+    // .subscribe(res => {
+    //   const alreadyregistered = res.find((already : any) => {    
+    //     return already.email === this.formValue.value.email 
+    //   });
+    //   if (!alreadyregistered) {
+    //     this.api.postUser(this.userModelObj)
+    //     .subscribe(res => {
+    //       console.log(res);
+    //       alert('User Added Successfully!');
+    //       let ref = document.getElementById('cancel');
+    //       ref?.click();
+    //       this.formValue.reset(); 
+    //       this.getUsers(); // added lang
+    //     }, err => {
+    //       alert('Something went wrong!');
+    //     })
+    //   }else{
+    //     alert ('Email is in Valid Format but ALREADY USED!');
+    //   }
+    // },err => {
+    //   alert ("Something went wrong!");
+    // })
+    //to this line is new
+    
     this.api.postUser(this.userModelObj)
     .subscribe(res => {
       console.log(res);
@@ -93,12 +117,14 @@ export class UserDashboardComponent implements OnInit{
     this.formValue.controls['first_name'].setValue(data.first_name);
     this.formValue.controls['last_name'].setValue(data.last_name);
     this.formValue.controls['email'].setValue(data.email); 
+  
   }
 
   onUpdate(){
     this.userModelObj.first_name = this.formValue.value.first_name;
     this.userModelObj.last_name = this.formValue.value.last_name;
     this.userModelObj.email = this.formValue.value.email;
+
 
     if(confirm("Are you sure you want to update?"))
 

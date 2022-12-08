@@ -26,14 +26,38 @@ export class SignUpComponent implements OnInit{
   }
 
   signUp() {
-    this.http.post<any>("http://localhost:5000/registered", this.signUpForm.value)
+
+    this.http.get<any>("http://localhost:5000/registered") //http://localhost:5000/registered
     .subscribe(res=> {
-      alert ("Signed-up Successfully@");
-      this.signUpForm.reset();
-      this.router.navigate(['login']);
-    }, err => {
-      alert ("Something went wrong"); 
+      const alreadyregistered = res.find((already : any) => {
+        return already.email === this.signUpForm.value.email 
+      });
+      if (!alreadyregistered) {
+            this.http.post<any>("http://localhost:5000/registered", this.signUpForm.value) //http://localhost:5000/registered
+          .subscribe(res=> {
+           alert ("Signed-up Successfully@");
+            this.signUpForm.reset();
+            this.router.navigate(['login']);
+            }, err => {
+            alert ("Something went wrong"); 
+            })
+      }else{
+        alert ('Email is in Valid Format but ALREADY USED!');
+      }
+    },err => {
+      alert ("Something went wrong!");
     })
+
+
+
+  //   this.http.post<any>("https://ng-complete-guide-5a700-default-rtdb.firebaseio.com/registered.json", this.signUpForm.value)
+  //   .subscribe(res=> {
+  //     alert ("Signed-up Successfully@");
+  //     this.signUpForm.reset();
+  //     this.router.navigate(['login']);
+  //   }, err => {
+  //     alert ("Something went wrong"); 
+  //   })
   }
 
 }

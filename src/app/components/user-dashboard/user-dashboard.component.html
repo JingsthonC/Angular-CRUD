@@ -1,16 +1,14 @@
 <nav class="navbar navbar-light bg-secondary">
-  
     <div class="container-fluid d-flex justify-content-between">
       <h1>User Panel</h1>
       <div class="d-flex">
-        <button 
+        <!-- <button 
           type="button" 
           class="btn btn-primary" 
           id = "addUserbtn"
           data-toggle="modal" 
           data-target="#myModal"
-          (click) = "onClickAdd()"
-          >Add User</button>
+          >Add User</button> -->
         <button routerLink="/login" class="btn btn-danger mx-2">Logout</button>
       </div>
     </div>
@@ -28,8 +26,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of userData | paginate: { itemsPerPage: 5, currentPage: p }" >
-            <td>picture</td>
+        <tr *ngFor="let data of userData | paginate: { itemsPerPage: 2, currentPage: p }" >
+            <td><img src = {{data.avatar}} alt ="{{data.first_name}} {{data.last_name}}"/></td>
             <td>{{data.id}}</td>
             <td>{{data.first_name}}</td>
             <td>{{data.last_name}}</td>
@@ -53,6 +51,11 @@
     </tbody>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>
+<div class="container d-flex justify-content-end">
+  <app-add-user></app-add-user>
+</div>
+
+
 
 <div class="container">
   
@@ -66,12 +69,10 @@
             <h4 class="modal-title">User Information</h4>
             <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
           </div>
-          
           <!-- Modal body -->
           <div class="modal-body">
-           
+
             <!--User Informatin Details-->
-           
             <div class="container">
                 <!--declare [formGroup]="formValue" data binding 
                 for every input formControlName=""-->
@@ -111,9 +112,7 @@
                   </div>            
                 </form>
               </div>
-
           </div>
-          
           <!-- Modal footer -->
           <div class="modal-footer">
             <button 
@@ -137,4 +136,9 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+
+
+
+
+<!--new-->

@@ -11,6 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { ApiloginComponent } from './components/apilogin/apilogin.component';
+import { ApiSignUpComponent } from './components/api-sign-up/api-sign-up.component';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     LoginComponent,
     SignUpComponent,
     AddUserComponent,
+    ApiloginComponent,
+    ApiSignUpComponent,
+
 
     
   ],

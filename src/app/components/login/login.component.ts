@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.http.get<any>("http://localhost:5000/registered")
+
+    this.http.get<any>("http://localhost:5000/registered") //http://localhost:5000/registered
     .subscribe(res=> {
       const registered = res.find((a : any) => {
         return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password 
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
       if (registered) {
         alert ("Log-in Success!");
         this.loginForm.reset();
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['/dashboard']);
       }else{
         alert ('User Not Found!');
       }
